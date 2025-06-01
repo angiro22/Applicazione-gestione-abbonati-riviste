@@ -65,6 +65,10 @@ requires javafx.graphics;
 
 ---
 
+## 🎉 5. Run the application
+
+In IntelliJ or Eclipse to the directory `src\main\java\com.example.gestioneabbonati` and run the `GestioneAbbonatiApplication.java` file.
+
 ## 🧪 System Requirements
 
 - JDK 17+
