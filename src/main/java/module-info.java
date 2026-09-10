@@ -2,7 +2,7 @@ module com.example.gestioneabbonati {
     requires javafx.fxml;
     requires java.management;
     requires org.controlsfx.controls;
-    requires java.desktop;
+    requires javafx.graphics;
 
 
     opens com.example.gestioneabbonati to javafx.fxml;
