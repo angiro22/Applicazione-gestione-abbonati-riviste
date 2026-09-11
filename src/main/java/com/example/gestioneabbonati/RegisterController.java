@@ -1,5 +1,6 @@
 package com.example.gestioneabbonati;
 
+import com.example.gestioneabbonati.common.DatabaseManager;
 import com.example.gestioneabbonati.common.Methods;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -82,16 +83,21 @@ public class RegisterController implements Initializable {
                     cb_city.getValue()
             );
 
-            FileWriter fileWriter = new FileWriter(HomeController.FILE_NAME, true);
-            String record = subscriber.toString();
-            fileWriter.write(record);
-            fileWriter.close();
+            boolean isSubscriberAdded = DatabaseManager.addSubscriber(subscriber);
 
-            Notifications.create()
+            if (isSubscriberAdded) {
+                Notifications.create()
                         .title("Successo")
-                        .text("Abbonato salvato correttamente nel file " + HomeController.FILE_NAME)
+                        .text("Abbonato registrato correttamente")
                         .position(Pos.TOP_RIGHT)
                         .showConfirm();
+            } else {
+                Notifications.create()
+                        .title("Fallimento")
+                        .text("Registrazione dell'abbonato fallita")
+                        .position(Pos.TOP_RIGHT)
+                        .showError();
+            }
             Methods.changePageToHome(RegisterController.class, actionEvent, "GUIHome.fxml", "Home");
         }
     }
