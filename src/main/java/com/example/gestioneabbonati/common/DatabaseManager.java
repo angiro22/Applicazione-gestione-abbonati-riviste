@@ -20,21 +20,20 @@ public class DatabaseManager {
                         INSERT INTO abbonati (code, magazineName, secondName, name, address, gender, city)
                         VALUES (?, ?, ?, ?, ?, ?, ?)
                         """;
-                try (Connection conn = getConnection()) {
-                        PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
-                                // Sostituzione dei '?' con i dati dell'abbonato
-                                preparedStatement.setString(1, subscriber.getCode());
-                                preparedStatement.setString(2, subscriber.getMagazineName());
-                                preparedStatement.setString(3, subscriber.getSecondName());
-                                preparedStatement.setString(4, subscriber.getName());
-                                preparedStatement.setString(5, subscriber.getAddress());
-                                preparedStatement.setString(6, subscriber.getGender());
-                                preparedStatement.setString(7, subscriber.getCity());
+                try (Connection conn = getConnection();
+                PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
+                        // Sostituzione dei '?' con i dati dell'abbonato
+                        preparedStatement.setString(1, subscriber.getCode());
+                        preparedStatement.setString(2, subscriber.getMagazineName());
+                        preparedStatement.setString(3, subscriber.getSecondName());
+                        preparedStatement.setString(4, subscriber.getName());
+                        preparedStatement.setString(5, subscriber.getAddress());
+                        preparedStatement.setString(6, subscriber.getGender());
+                        preparedStatement.setString(7, subscriber.getCity());
 
-                                // Inserimento nel database
-                                int rowsAffected = preparedStatement.executeUpdate();
-                                return rowsAffected > 0;
-                        }
+                        // Inserimento nel database
+                        int rowsAffected = preparedStatement.executeUpdate();
+                        return rowsAffected > 0;
                 } catch (SQLException e) {
                         System.err.println("Errore durante l'inserimento dell'abbonato: " + e.getMessage());
                         e.printStackTrace();
