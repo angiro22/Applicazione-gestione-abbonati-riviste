@@ -30,7 +30,7 @@ public class DatabaseManager {
         }
 
         // Inizializzazione database
-        private static void initializeDatabase() {
+        public static void initializeDatabase() {
                 Path schemaFile = Path.of(SCHEMA_PATH);
 
                 if (!Files.exists(schemaFile)) {
