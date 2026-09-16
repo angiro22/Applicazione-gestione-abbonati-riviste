@@ -13,7 +13,43 @@ public class DatabaseManager {
         private static final String URL = "jdbc:sqlite:" + DB_PATH; // url connessione SQLite
         private static final String SCHEMA_PATH = "abbonati/schema.sql"; // dir istruzioni sql ddl
 
-        // Inserire abbonati nel db
+        // Leggere abbonato dal db
+        public static Subscriber getSubscriber(String subscriberCode) {
+                String sql = """
+                        SELECT *
+                        FROM abbonati
+                        WHERE code = ?
+                        """;
+
+                try (Connection conn = getConnection();
+                PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
+                        preparedStatement.setString(1, subscriberCode);
+
+                        try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                                if (resultSet.next()) {
+                                        // Estraggo i dati dell'abbonato e creo l'oggetto
+                                        String code = resultSet.getString("code");
+                                        String magazineName = resultSet.getString("magazineName");
+                                        String secondName = resultSet.getString("secondName");
+                                        String name = resultSet.getString("name");
+                                        String address = resultSet.getString("address");
+                                        String gender = resultSet.getString("gender");
+                                        String city = resultSet.getString("city");
+
+                                        return new Subscriber(code, magazineName, secondName, name, address, gender, city);
+                                }
+                        }
+                } catch (SQLException e) {
+                        System.err.println("Errore nella lettura dell'abbonato: " + e.getMessage());
+                        e.printStackTrace();
+                }
+
+                return null;
+        }
+
+        // Inserire abbonati nel db        try (Connection conn = getConnection();
+        //                PreparedStatement preparedStatement = conn.prepareStatement(sql);
+        //                Subscriber searchedSubscriber = (Subscriber) preparedStatement.executeQuery(sql)) {
         public static boolean addSubscriber(Subscriber subscriber) {
                 // I '?' verranno sostituiti con i dati dell'abbonato
                 String sql = """
