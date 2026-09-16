@@ -1,5 +1,6 @@
 package com.example.gestioneabbonati;
 
+import com.example.gestioneabbonati.common.DatabaseManager;
 import com.example.gestioneabbonati.common.Methods;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -36,11 +37,11 @@ public class ViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            readFile();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+//        try {
+//            readFile();
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
 
         Platform.runLater(() -> tf_code.deselect());
     }
@@ -50,7 +51,7 @@ public class ViewController implements Initializable {
     }
 
     public void setSubscriberInfo() {
-        Subscriber subscriber = findSubscriber(tf_code.getText());
+        Subscriber subscriber = DatabaseManager.getSubscriber(tf_code.getText());
 
         if (subscriber != null) {
             setTextField(tf_magazineName, subscriber.getMagazineName());
@@ -81,41 +82,41 @@ public class ViewController implements Initializable {
         textField.setText(value);
     }
 
-    private void readFile() throws IOException {
-        FileReader fileReader = new FileReader(HomeController.FILE_NAME);
-        BufferedReader bufferedReader = new BufferedReader(fileReader);
-        while (true) {
-            String line = bufferedReader.readLine();
-            if (line == null) break;
-
-            readLine(line);
-        }
-    }
-
-    private void readLine(String xline) {
-        StringTokenizer stringTokenizer = new StringTokenizer(xline, ";");
-        if (stringTokenizer.hasMoreTokens()) {
-            subscribers.add(
-                    new Subscriber(
-                            stringTokenizer.nextToken(), // code
-                            stringTokenizer.nextToken(), // magazineName
-                            stringTokenizer.nextToken(), // secondName
-                            stringTokenizer.nextToken(), // name
-                            stringTokenizer.nextToken(), // address
-                            stringTokenizer.nextToken(), // gender
-                            stringTokenizer.nextToken() // city
-                    )
-            );
-        }
-    }
-
-    private Subscriber findSubscriber(String code) {
-        for (int i = 0; i < subscribers.size(); i++) {
-            if (subscribers.get(i).getCode().equals(code)) {
-                return subscribers.get(i);
-            }
-        }
-
-        return null;
-    }
+//    private void readFile() throws IOException {
+//        FileReader fileReader = new FileReader(HomeController.FILE_NAME);
+//        BufferedReader bufferedReader = new BufferedReader(fileReader);
+//        while (true) {
+//            String line = bufferedReader.readLine();
+//            if (line == null) break;
+//
+//            readLine(line);
+//        }
+//    }
+//
+//    private void readLine(String xline) {
+//        StringTokenizer stringTokenizer = new StringTokenizer(xline, ";");
+//        if (stringTokenizer.hasMoreTokens()) {
+//            subscribers.add(
+//                    new Subscriber(
+//                            stringTokenizer.nextToken(), // code
+//                            stringTokenizer.nextToken(), // magazineName
+//                            stringTokenizer.nextToken(), // secondName
+//                            stringTokenizer.nextToken(), // name
+//                            stringTokenizer.nextToken(), // address
+//                            stringTokenizer.nextToken(), // gender
+//                            stringTokenizer.nextToken() // city
+//                    )
+//            );
+//        }
+//    }
+//
+//    private Subscriber findSubscriber(String code) {
+//        for (int i = 0; i < subscribers.size(); i++) {
+//            if (subscribers.get(i).getCode().equals(code)) {
+//                return subscribers.get(i);
+//            }
+//        }
+//
+//        return null;
+//    }
 }
