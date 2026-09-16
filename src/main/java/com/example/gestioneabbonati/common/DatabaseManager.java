@@ -11,7 +11,7 @@ import java.sql.*;
 public class DatabaseManager {
         private static final String DB_PATH = "database/abbonati.db"; // dir database
         private static final String URL = "jdbc:sqlite:" + DB_PATH; // url connessione SQLite
-        private static final String SCHEMA_PATH = "abbonati/schema.sql"; // dir istruzioni sql ddl
+        private static final String SCHEMA_PATH = "database/schema.sql"; // dir istruzioni sql ddl
 
         // Leggere abbonato dal db
         public static Subscriber getSubscriber(String subscriberCode) {
