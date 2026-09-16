@@ -1,5 +1,6 @@
 package com.example.gestioneabbonati;
 
+import com.example.gestioneabbonati.common.DatabaseManager;
 import com.example.gestioneabbonati.common.Methods;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -54,7 +55,7 @@ public class HomeController implements Initializable {
    // @FXML
     //private Label lbl_checkCode;
 
-    final public static String FILE_NAME = "abbonati.txt";
+    //final public static String FILE_NAME = "abbonati.txt";
 
     public void goToRegisterPage(ActionEvent actionEvent) throws IOException {
         boolean codeIsNaN = false;
@@ -140,25 +141,7 @@ public class HomeController implements Initializable {
     String code, magazineName, secondName, name, address, gender, city;
 
     private boolean codeExists() {
-        try {
-            // Read file
-            FileReader fileReader = new FileReader(FILE_NAME);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-
-            while (true) {
-                String line = bufferedReader.readLine();
-                if (line == null) break;
-
-                readLine(line);
-
-                // Check for code
-                if (code.equals(tf_code.getText())) return true;
-            }
-        } catch (IOException e) {
-            return false;
-        }
-
-        return false;
+        return DatabaseManager.getSubscriber(tf_code.getText()) != null;
     }
 
     private void readLine(String xline) {
