@@ -1,5 +1,6 @@
 package com.example.gestioneabbonati;
 
+import com.example.gestioneabbonati.common.DatabaseManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -12,6 +13,8 @@ import java.io.IOException;
 public class GestioneAbbonatiApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
+        DatabaseManager.initializeDatabase();
+
         FXMLLoader fxmlLoader = new FXMLLoader(GestioneAbbonatiApplication.class.getResource("GUIHome.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 800, 800);
         stage.setTitle("Home");
