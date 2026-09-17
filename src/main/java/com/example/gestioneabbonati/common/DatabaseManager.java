@@ -47,9 +47,7 @@ public class DatabaseManager {
                 return null;
         }
 
-        // Inserire abbonati nel db        try (Connection conn = getConnection();
-        //                PreparedStatement preparedStatement = conn.prepareStatement(sql);
-        //                Subscriber searchedSubscriber = (Subscriber) preparedStatement.executeQuery(sql)) {
+        // Inserire abbonati nel db
         public static boolean addSubscriber(Subscriber subscriber) {
                 // I '?' verranno sostituiti con i dati dell'abbonato
                 String sql = """

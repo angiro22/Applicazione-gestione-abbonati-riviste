@@ -37,12 +37,6 @@ public class ViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-//        try {
-//            readFile();
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-
         Platform.runLater(() -> tf_code.deselect());
     }
 
@@ -81,42 +75,4 @@ public class ViewController implements Initializable {
     private void setTextField(TextField textField, String value) {
         textField.setText(value);
     }
-
-//    private void readFile() throws IOException {
-//        FileReader fileReader = new FileReader(HomeController.FILE_NAME);
-//        BufferedReader bufferedReader = new BufferedReader(fileReader);
-//        while (true) {
-//            String line = bufferedReader.readLine();
-//            if (line == null) break;
-//
-//            readLine(line);
-//        }
-//    }
-//
-//    private void readLine(String xline) {
-//        StringTokenizer stringTokenizer = new StringTokenizer(xline, ";");
-//        if (stringTokenizer.hasMoreTokens()) {
-//            subscribers.add(
-//                    new Subscriber(
-//                            stringTokenizer.nextToken(), // code
-//                            stringTokenizer.nextToken(), // magazineName
-//                            stringTokenizer.nextToken(), // secondName
-//                            stringTokenizer.nextToken(), // name
-//                            stringTokenizer.nextToken(), // address
-//                            stringTokenizer.nextToken(), // gender
-//                            stringTokenizer.nextToken() // city
-//                    )
-//            );
-//        }
-//    }
-//
-//    private Subscriber findSubscriber(String code) {
-//        for (int i = 0; i < subscribers.size(); i++) {
-//            if (subscribers.get(i).getCode().equals(code)) {
-//                return subscribers.get(i);
-//            }
-//        }
-//
-//        return null;
-//    }
 }

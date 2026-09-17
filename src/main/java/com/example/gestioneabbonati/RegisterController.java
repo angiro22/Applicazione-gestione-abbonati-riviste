@@ -86,11 +86,6 @@ public class RegisterController implements Initializable {
             boolean isSubscriberAdded = DatabaseManager.addSubscriber(subscriber);
 
             if (isSubscriberAdded) {
-//                Notifications.create()
-//                        .title("Successo")
-//                        .text("Abbonato registrato correttamente")
-//                        .position(Pos.TOP_RIGHT)
-//                        .showConfirm();
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Successo");
                 alert.setHeaderText(null);

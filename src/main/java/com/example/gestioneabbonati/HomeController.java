@@ -52,10 +52,6 @@ public class HomeController implements Initializable {
 
     @FXML
     private TextField tf_code;
-   // @FXML
-    //private Label lbl_checkCode;
-
-    //final public static String FILE_NAME = "abbonati.txt";
 
     public void goToRegisterPage(ActionEvent actionEvent) throws IOException {
         boolean codeIsNaN = false;
@@ -75,8 +71,6 @@ public class HomeController implements Initializable {
         } else if (codeExists()) {
             showErrorMessage("Il codice abbonato è già esistente, se vuoi visualizzare l'abbonamento clicca su \"Visualizza\".");
         } else {
-            //lbl_checkCode.setVisible(false);
-
             // Setting up page
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUIRegister.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
@@ -112,8 +106,6 @@ public class HomeController implements Initializable {
         } else if (!codeExists()) {
             showErrorMessage("Il codice abbonato non esiste, se vuoi registrarti clicca su \"Registrati\".");
         } else {
-            //lbl_checkCode.setVisible(false);
-
             // Setting up page
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUIView.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
@@ -133,8 +125,6 @@ public class HomeController implements Initializable {
     }
 
     private void showErrorMessage(String s) {
-        //lbl_checkCode.setText(s);
-        //lbl_checkCode.setVisible(true);
         Methods.sendNotification(s);
     }
 
