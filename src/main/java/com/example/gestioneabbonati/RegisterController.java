@@ -86,11 +86,18 @@ public class RegisterController implements Initializable {
             boolean isSubscriberAdded = DatabaseManager.addSubscriber(subscriber);
 
             if (isSubscriberAdded) {
-                Notifications.create()
-                        .title("Successo")
-                        .text("Abbonato registrato correttamente")
-                        .position(Pos.TOP_RIGHT)
-                        .showConfirm();
+//                Notifications.create()
+//                        .title("Successo")
+//                        .text("Abbonato registrato correttamente")
+//                        .position(Pos.TOP_RIGHT)
+//                        .showConfirm();
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Successo");
+                alert.setHeaderText(null);
+                alert.setContentText("Abbonato registrato correttamente!");
+
+                alert.showAndWait();
+                Methods.changePageToHome(RegisterController.class, actionEvent, "GUIHome.fxml", "Home");
             } else {
                 Notifications.create()
                         .title("Fallimento")
@@ -98,7 +105,6 @@ public class RegisterController implements Initializable {
                         .position(Pos.TOP_RIGHT)
                         .showError();
             }
-            Methods.changePageToHome(RegisterController.class, actionEvent, "GUIHome.fxml", "Home");
         }
     }
 
