@@ -1,43 +1,43 @@
-# Gestione abbonati riviste
+# Magazine subscription manager
 
-Applicazione desktop sviluppata in JavaFX per la gestione degli abbonamenti a riviste, realizzata come progetto finale del quarto anno di scuola superiore. L'interfaccia grafica è interamente in italiano.
+Desktop application built with JavaFX for managing magazine subscriptions, developed as a final project for the fourth year of high school. The graphical interface is entirely in Italian.
 
-## Funzionalità
+## Features
 
-Tramite un codice abbonato di otto cifre, l'applicazione permette di:
+Using an eight-digit subscriber code, the application allows you to:
 
-- registrare un nuovo abbonato, con nome della rivista, dati anagrafici, indirizzo email e città;
-- visualizzare i dati di un abbonato già registrato.
+- register a new subscriber, with magazine name, personal details, email address and city;
+- view the data of an already registered subscriber.
 
-Le convalide impediscono la registrazione di un codice già esistente e la visualizzazione di un codice inesistente. Ogni campo del modulo di registrazione è controllato singolarmente: nome e cognome non possono contenere cifre, l'indirizzo email deve avere formato valido con una delle estensioni ammesse (it, com, org, net, edu), la città deve essere selezionata da un elenco. Gli errori di convalida e la conferma di registrazione sono mostrati con le notifiche di ControlsFX.
+Validation prevents registering a code that already exists and viewing a code that does not exist. Each field in the registration form is checked individually: first and last name cannot contain digits, the email address must have a valid format with one of the allowed extensions (it, com, org, net, edu), and a city must be selected. Validation errors and the registration confirmation are shown through ControlsFX notifications.
 
-## Interfaccia
+## Interface
 
-All'avvio compare la home page, dove si inserisce il codice abbonato e si sceglie tra registrazione e visualizzazione.
+On launch, the home page appears, where the subscriber code is entered and a choice is made between registration and viewing.
 
 ![Home page](screenshots/homePage.png)
 
-Se una convalida fallisce, l'errore è mostrato con una notifica di ControlsFX.
+If a validation fails, the error is shown through a ControlsFX notification.
 
-![Notifica di errore](screenshots/notification.png)
+![Error notification](screenshots/notification.png)
 
-Dalla home, scegliendo di registrare un nuovo abbonato con un codice non ancora presente, si accede al modulo di registrazione.
+From the home page, choosing to register a new subscriber with a code that does not exist yet opens the registration form.
 
-![Pagina di registrazione](screenshots/registrationPage.png)
+![Registration page](screenshots/registrationPage.png)
 
-Scegliendo di visualizzare un codice già registrato, i dati dell'abbonato sono mostrati in sola lettura.
+Choosing to view an already registered code shows the subscriber's data in read-only fields.
 
-![Pagina di visualizzazione](screenshots/viewPage.png)
+![View page](screenshots/viewPage.png)
 
-## Tecnologie
+## Technologies
 
 - Java 17
-- JavaFX, per l'interfaccia grafica e la navigazione tra le scene tramite FXML
-- SQLite, tramite driver org.xerial:sqlite-jdbc, per la persistenza dei dati degli abbonati
-- ControlsFX, per le notifiche popup
-- Maven, per la gestione delle dipendenze e la build
+- JavaFX, for the graphical interface and scene navigation through FXML
+- SQLite, through the org.xerial:sqlite-jdbc driver, for persisting subscriber data
+- ControlsFX, for popup notifications
+- Maven, for dependency management and the build
 
-## Struttura del progetto
+## Project structure
 
 ```
 src/main/java/
@@ -63,25 +63,25 @@ database/
 └── schema.sql
 ```
 
-`DatabaseManager` gestisce la connessione a SQLite e le operazioni di lettura e inserimento sulla tabella abbonati. Il file del database viene creato automaticamente al primo avvio, nella cartella `database` della directory di lavoro.
+`DatabaseManager` handles the SQLite connection and the read and insert operations on the subscribers table. The database file is created automatically on first launch, in the `database` folder of the working directory.
 
-## Requisiti
+## Requirements
 
-- JDK 17 o superiore
+- JDK 17 or higher
 - Maven
 
-## Installazione e avvio
+## Installation and startup
 
-1. Clonare il repository:
+1. Clone the repository:
    ```
    git clone https://github.com/angiro22/Applicazione-gestione-abbonati-riviste
    ```
-2. Aprire il progetto con IntelliJ IDEA o Eclipse: Maven scarica ed aggiunge in automatico le dipendenze, incluso ControlsFX.
-3. Avviare `GestioneAbbonatiApplication.java` dall'IDE, oppure da terminale:
+2. Open the project with IntelliJ IDEA or Eclipse: Maven downloads and adds the dependencies automatically, ControlsFX included.
+3. Run `GestioneAbbonatiApplication.java` from the IDE, or from a terminal:
    ```
    mvn javafx:run
    ```
 
-## Note
+## Notes
 
-Progetto assegnato dal docente di informatica come lavoro finale del quarto anno.
+Project assigned by the computer science teacher as the final work of the fourth year.
