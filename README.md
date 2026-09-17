@@ -1,182 +1,87 @@
-# 📚 Magazine Subscription Manager with JavaFX
+# Gestione abbonati riviste
 
-A desktop application developed with **JavaFX** as a final project for the fourth year of high school. It allows users to manage magazine subscriptions through a simple and intuitive graphical interface. The entire interface is written in Italian 🇮🇹.
+Applicazione desktop sviluppata in JavaFX per la gestione degli abbonamenti a riviste, realizzata come progetto finale del quarto anno di scuola superiore. L'interfaccia grafica è interamente in italiano.
 
----
+## Funzionalità
 
-## 🚀 Overview
+Tramite un codice abbonato di otto cifre, l'applicazione permette di:
 
-This application allows users, through entering a **subscription code**, to:
-- View or add magazines they are subscribed to or want to subscribe to
-- View the **subscriber’s personal information**
+- registrare un nuovo abbonato, con nome della rivista, dati anagrafici, indirizzo email e città;
+- visualizzare i dati di un abbonato già registrato.
 
-The app uses **ControlsFX** to enhance the user experience with **popup notifications**.
+Le convalide impediscono la registrazione di un codice già esistente e la visualizzazione di un codice inesistente. Ogni campo del modulo di registrazione è controllato singolarmente: nome e cognome non possono contenere cifre, l'indirizzo email deve avere formato valido con una delle estensioni ammesse (it, com, org, net, edu), la città deve essere selezionata da un elenco. Gli errori di convalida e la conferma di registrazione sono mostrati con le notifiche di ControlsFX.
 
----
+## Interfaccia
 
-## 💻 How to Make It Work
+All'avvio compare la home page, dove si inserisce il codice abbonato e si sceglie tra registrazione e visualizzazione.
 
-### 📥 1. Clone the repository
-```bash
-git clone https://github.com/angiro22/Applicazione-gestione-abbonati-riviste
-```
+![Home page](screenshots/homePage.png)
 
-### 🧠 2. Open the project with your preferred IDE
-> 🔧 Tip: use **IntelliJ IDEA** or **Eclipse**
+Se una convalida fallisce, l'errore è mostrato con una notifica di ControlsFX.
 
----
+![Notifica di errore](screenshots/notification.png)
 
-### 🧾 3. Edit the `module-info.java` file
+Dalla home, scegliendo di registrare un nuovo abbonato con un codice non ancora presente, si accede al modulo di registrazione.
 
-Path:
-```
-src/main/java/module-info.java
-```
+![Pagina di registrazione](screenshots/registrationPage.png)
 
-Change:
-```java
-requires java.desktop;
-```
+Scegliendo di visualizzare un codice già registrato, i dati dell'abbonato sono mostrati in sola lettura.
 
-To:
-```java
-requires javafx.graphics;
-```
+![Pagina di visualizzazione](screenshots/viewPage.png)
 
-> ☝️ This enables JavaFX support in your application.
+## Tecnologie
 
----
+- Java 17
+- JavaFX, per l'interfaccia grafica e la navigazione tra le scene tramite FXML
+- SQLite, tramite driver org.xerial:sqlite-jdbc, per la persistenza dei dati degli abbonati
+- ControlsFX, per le notifiche popup
+- Maven, per la gestione delle dipendenze e la build
 
-### 📦 4. Add the `ControlsFX` library
-
-#### IntelliJ IDEA:
-- Go to `File » Project Structure...` (`Ctrl+Alt+Shift+S`)
-- In `Project Settings`, click `Libraries`
-- Press the `+` button → `Java`
-- Select: `libs/controlsfx-11.2.0.jar`
-- Click `Apply`, then `OK`
-
-#### Eclipse:
-- Go to `Project » Properties » Java Build Path`
-- Select the `Libraries` tab
-- Click `Add External JARs...`
-- Choose: `libs/controlsfx-11.2.0.jar`
-- Confirm with `Apply and Close`
-
----
-
-## 🎉 5. Run the application
-
-In IntelliJ or Eclipse go to the directory `src\main\java\com.example.gestioneabbonati` and run the `GestioneAbbonatiApplication.java` file.
-
-## 🧪 System Requirements
-
-- JDK 17+
-- JavaFX SDK configured in the project
-- `controlsfx-11.2.0.jar` present in the `libs/` folder
-
----
-
-## 📁 Project Structure
+## Struttura del progetto
 
 ```
-src/
-└── main/
-    ├── java/
-    │   ├── module-info.java
-    │   └── com/example/gestioneabbonati/
-    │       ├── GestioneAbbonatiApplication.java
-    │       ├── HomeController.java
-    │       ├── RegisterController.java
-    │       ├── Subscriber.java
-    │       ├── ViewController.java
-    │       └── common/
-    │           └── Methods.java
-    └── resources/
-        └── com/example/gestioneabbonati/
-            ├── GUIHome.fxml
-            ├── GUIRegister.fxml
-            ├── GUIView.fxml
-            └── styles/
-                └── style.css
+src/main/java/
+├── module-info.java
+└── com/example/gestioneabbonati/
+    ├── GestioneAbbonatiApplication.java
+    ├── HomeController.java
+    ├── RegisterController.java
+    ├── ViewController.java
+    ├── Subscriber.java
+    └── common/
+        ├── DatabaseManager.java
+        └── Methods.java
+
+src/main/resources/com/example/gestioneabbonati/
+├── GUIHome.fxml
+├── GUIRegister.fxml
+├── GUIView.fxml
+└── styles/style.css
+
+database/
+├── abbonati.db
+└── schema.sql
 ```
 
----
+`DatabaseManager` gestisce la connessione a SQLite e le operazioni di lettura e inserimento sulla tabella abbonati. Il file del database viene creato automaticamente al primo avvio, nella cartella `database` della directory di lavoro.
 
-## 🧑‍🏫 Final Notes
+## Requisiti
 
-This project was assigned by my Computer Science teacher as the final programming project for the fourth year of high school.  
-Since I’m Italian, all GUI text and labels are in my native language.
+- JDK 17 o superiore
+- Maven
 
----
+## Installazione e avvio
 
-## 🔍 How It Works
+1. Clonare il repository:
+   ```
+   git clone https://github.com/angiro22/Applicazione-gestione-abbonati-riviste
+   ```
+2. Aprire il progetto con IntelliJ IDEA o Eclipse: Maven scarica ed aggiunge in automatico le dipendenze, incluso ControlsFX.
+3. Avviare `GestioneAbbonatiApplication.java` dall'IDE, oppure da terminale:
+   ```
+   mvn javafx:run
+   ```
 
-This application allows users to manage magazine subscriptions using a unique subscriber code.  
-The main steps are illustrated below with example screenshots.
+## Note
 
----
-
-### 🏠 Home Page
-
-On launch, the **Home Page** is shown, where users must enter their **subscriber code**.  
-There are two buttons: `Registrati` and `Visualizza`.
-
-The following validations are performed:
-- Must be exactly **8 digits**
-- Must be **numeric**
-- Must **not be empty**
-
-📌 Depending on the button clicked:
-- If `Registrati`, the code **must not exist**
-- If `Visualizza`, the code **must exist**
-
-<img src="screenshots/homePage.png" alt="Home Page" width="40%"/>
-
----
-
-### ⚠️ Error Notifications
-
-If any validation fails, an error message is shown using **ControlsFX notifications**.
-
-Examples:
-- “Please enter the subscriber code!”
-- “The subscriber code already exists...”
-- “The subscriber code does not exist...”
-
-<img src="screenshots/notification.png" alt="Notification" width="40%"/>
-
----
-
-### 📝 Registration Page
-
-If validations pass and the user clicked `Registrati`, they are redirected to the **registration page**.  
-Here they must fill out personal information:
-
-- Subscriber code (read-only)
-- Magazine name
-- Last name, First name, Email
-- Gender (radio button)
-- City (combo box)
-
-🔍 All fields are **thoroughly validated**, for example:
-- Email must contain exactly one `@`, a valid domain, and an allowed extension: `it`, `com`, `org`, `net`, `edu`
-- Names cannot contain numbers
-- A city must be selected
-
-If all fields are valid:
-- The data is saved into `abbonati.txt` (created if not present)
-- The user is returned to the **Home Page**
-
-<img src="screenshots/registrationPage.png" alt="Registration Page" width="40%"/>
-
----
-
-### 📄 View Page
-
-If the user clicked `Visualizza` and the code exists, the **view page** is shown.  
-All subscriber data is displayed in **read-only fields**.
-
-The information is read from `abbonati.txt` and loaded into the GUI.
-
-<img src="screenshots/viewPage.png" alt="View Page" width="40%"/>
+Progetto assegnato dal docente di informatica come lavoro finale del quarto anno.
